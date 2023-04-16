@@ -29,9 +29,11 @@ public class MyResources {
 
 	@POST
 	@Path("list")
-	public Response postToDo(@BeanParam ToDoDTO toDo) {
+	@Template(name = "/todo")
+	public String postToDo(@BeanParam ToDoDTO toDo) {
 		toDoDAO.create(toDo);
-		return Response.seeOther(URI.create("list")).build();
+		toDoDAO.getAll();
+		return "";
 	}
 
 	@GET
